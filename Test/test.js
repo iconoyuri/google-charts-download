@@ -35,9 +35,10 @@
             
             rect.remove()
 
+            // svg is the tag representing the chart displayed on the page
             var svg = document.querySelector("svg")
             downloadPNG(svg, "image")
             downloadJPG(chart, "image")
-            downloadSVG(svg.outerHTML, "image")
+            downloadSVG(svg, "image")
         }
         

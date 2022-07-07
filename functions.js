@@ -1,6 +1,7 @@
 // From chart variable download
 
 function downloadPNG(svg, imageTitle){
+    // svg variable is the svg tag from which we want to get an PNG
     var textSvg = new XMLSerializer().serializeToString(svg)
     textSvg = '<?xml version="1.0"?>\n ' + textSvg
     var imgsrc = 'data:image/svg+xml;base64,'+ btoa(textSvg);
@@ -43,10 +44,10 @@ function downloadJPG(chart, imageTitle){
 
 // From svg outerHTML text download
 
-function downloadSVG(svgOuterHTML, imageTitle){
-    // var text = new XMLSerializer().serializeToString(svg)
+function downloadSVG(svg, imageTitle){
+    var textSVG = new XMLSerializer().serializeToString(svg)
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(svgOuterHTML));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textSVG));
     element.setAttribute('download', imageTitle + ".svg");
 
     element.style.display = 'none';
