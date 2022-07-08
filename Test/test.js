@@ -1,44 +1,36 @@
+google.charts.load("current", {
+	packages: ["geochart"],
+});
+google.charts.setOnLoadCallback(drawRegionsMap);
+function drawRegionsMap() {
+	var data = google.visualization.arrayToDataTable([
+		["Country", "Popularity"],
+		["Germany", 200],
+		["United States", 300],
+		["Brazil", 400],
+		["Canada", 500],
+		["France", 600],
+		["Cameroon", 600],
+		["RU", 700],
+	]);
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
+	var options = {};
 
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
+	var chart = new google.visualization.GeoChart(
+		document.getElementById("chart_div")
+	);
 
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
+	chart.draw(data, options);
+	// rect = charDiv.querySelector("svg > rect");
+	// rect.remove();
 
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Slices');
-            data.addRows([
-                ['Mushrooms', 3],
-                ['Onions', 1],
-                ['Olives', 1],
-                ['Zucchini', 1],
-                ['Pepperoni', 2]
-            ]);
-
-            // Set chart options
-            var options = {'title':'How Much Pizza I Ate Last Night',
-                            'width':400,
-                            'height':300};
-
-            // Instantiate and draw our chart, passing in some options.
-            charDiv = document.getElementById('chart_div')
-            var chart = new google.visualization.PieChart(charDiv);
-            chart.draw(data, options);
-            rect = charDiv.querySelector("svg > rect")
-            
-            rect.remove()
-
-            // svg is the tag representing the chart displayed on the page
-            var svg = document.querySelector("svg")
-            downloadPNG(svg, "image")
-            downloadJPG(chart, "image")
-            downloadSVG(svg, "image")
-        }
-        
+	// svg is the tag representing the chart displayed on the page
+	setTimeout(() => {
+		var svg = document.querySelector("#chart_div svg");
+		// svg.
+		// console.log(svg)
+		downloadSVG(svg, "image");
+		downloadPNG(svg, "image");
+		downloadJPG(chart, "image");
+	}, 2000);
+}
