@@ -21,16 +21,13 @@ function drawRegionsMap() {
 	);
 
 	chart.draw(data, options);
-	// rect = charDiv.querySelector("svg > rect");
-	// rect.remove();
 
-	// svg is the tag representing the chart displayed on the page
+	// svg is the node of the chart displayed on the page
 	setTimeout(() => {
 		var svg = document.querySelector("#chart_div svg");
-		// svg.
-		// console.log(svg)
 		downloadSVG(svg, "image");
 		downloadPNG(svg, "image");
 		downloadJPG(chart, "image");
+		downloadPDF(chart, "image");
 	}, 2000);
 }
